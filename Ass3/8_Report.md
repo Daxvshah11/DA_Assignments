@@ -4,9 +4,7 @@
  - **Simplicity**: Apriori is generally simpler to understand and implement, making it a good choice for straightforward association rule mining tasks.
  - **Dataset characteristics**: If the dataset is relatively small or has a low number of transactions (users) compared to items (movies), Apriori can be efficient enough. 
  - **Interpretability**: Apriori generates rules that are often easier to interpret, which can be beneficial when analyzing user-movie relationships. 
- - **Memory usage**: For datasets with a large number of unique items but fewer transactions, Apriori might use less memory than FP-Growth, which builds a tree structure. 
- - **Rule generation**: If you're specifically interested in generating and analyzing association rules, Apriori directly produces these rules, while FP-Growth requires an additional step. 
- - **Sparsity**: If the dataset is sparse (many users rate only a few movies), Apriori can handle this efficiently. 
+ - **Memory usage**: For datasets with a large number of unique items but fewer transactions, Apriori might use less memory than FP-Growth, which builds a tree structure.
  - **Familiarity**: Apriori is more widely known and used, which can be advantageous for collaboration or when using existing implementations.
 
 
