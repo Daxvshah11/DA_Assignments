@@ -11,13 +11,19 @@
 
 ### Choosing Tuning Parameters
 
-* We have run a GridSearch function (trying all possible combinations) on the dataset
+* We have manually run multiple runs on different combinations of `C & Gamma` with splitting of the training set
 
-* It uses Cross Validation on the dataset to see which combination of the tuning parameters, namely `C & Gamma` for __rbf__ kernel are the best suited, finding a balance between underfit and overfit
+* We used `validation sets` to calculate accuracy for the purpose of tuning both the above parameters
 
-* We are relying on its results to believe that the model trained with those tuning parameters would give us the `relatively best accuracy` model & predictions
+* Some of the best balanced combinations we found are as below (C | Gamma | Accuracy):
+    * > 10 | 0.1 | 0.3967391304347826
+    * > 20 | 0.1 | 0.4076086956521739
+    * > 10 | 0.2 | 0.44021739130434784
+    * > 20 | 0.2 | 0.4483695652173913
 
-* It has been run once in OvO file and those same values are directly used in the OvA file too since the dataset remains same
+* Currently, we have kept the combo of `C=10 & Gamma=0.2` as the most balanced one to avoid any kind of __underfit or overfit__
+
+* Although, these values can be easily changed according to the purpose in the functions
 
 
 
