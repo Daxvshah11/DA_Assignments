@@ -78,6 +78,7 @@ processed_train_data.drop("ID", axis=1, inplace=True)
 # calling missing values function on columns as below
 fill_missing_based_on_skewness(processed_train_data, "Work_Experience")
 fill_missing_based_on_skewness(processed_train_data, "Family_Size")
+fill_missing_based_on_skewness(processed_train_data, "Age")
 
 # calling missing values function on categorical columns
 fill_missing_categorical(processed_train_data, "Var_1")
@@ -141,6 +142,7 @@ processed_test_data.drop("ID", axis=1, inplace=True)
 # same preprocessing steps to the test data
 fill_missing_based_on_skewness(processed_test_data, "Work_Experience")
 fill_missing_based_on_skewness(processed_test_data, "Family_Size")
+fill_missing_based_on_skewness(processed_test_data, "Age")
 
 fill_missing_categorical(processed_test_data, "Var_1")
 fill_missing_categorical(processed_test_data, "Gender")

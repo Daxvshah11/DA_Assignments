@@ -29,10 +29,26 @@
 
 ## `Task 2`
 
+### 1. Feature Selection
+* Options: sqrt, log2, or percentage of features
+* Different features for each split
+* Decorrelates trees for better generalization
 
-![alt text](random_forest_classification_report.png) 
-![alt text](random_forest_confusion_matrix.png) 
-![alt text](random_forest_hyperparameters_distribution.png)
+### 2. Decision Tree Parameters
+* max_depth: Controls tree complexity
+* min_samples_split/leaf: Prevents overfitting in leaf nodes
+* Both control granularity of decision boundaries
+
+### 3. Voting Mechanism
+* Each tree makes a prediction
+* Final prediction by majority voting
+* More robust than single tree decisions
+
+## Key Design Choices
+* Used cross-validation for parameter tuning
+* Implemented grid search over multiple parameters
+* Created visualization for parameter impact analysis
+* Included metrics for multi-class performance evaluation
 
 
 ## `Task 3`
@@ -135,6 +151,10 @@ __OvA Plots__
 ![alt text](ova_classification_report.png) 
 
 
+__Random Forest Plots__
+
+![alt text](random_forest_classification_report.png) 
+![alt text](random_forest_confusion_matrix.png) 
 
 
 ### Part D
@@ -146,25 +166,25 @@ __OvA Plots__
 
 2. __Class-wise Performance__
 
+    * Class A
+        - OvA: Precision=0.79, Recall=0.47, F1=0.59
+        - OvO: Precision=0.69, Recall=0.59, F1=0.64
+        - **Result**: OvO achieves better balanced performance
+    
     * Class B
         - OvA: Precision=0.36, Recall=0.92, F1=0.51
         - OvO: Precision=0.45, Recall=0.72, F1=0.55
         - **Result**: OvO shows better balanced metrics
 
-    * Class D
-        - OvA: Precision=1.0, Recall=0.013, F1=0.025
-        - OvO: Precision=0.53, Recall=0.32, F1=0.40
-        - **Result**: OvO demonstrates significantly better balanced performance
-
     * Class C
         - OvA: Precision=1.0, Recall=0.034, F1=0.067
         - OvO: Precision=0.63, Recall=0.38, F1=0.47
         - **Result**: OvO shows more balanced metrics
-
-    * Class A
-        - OvA: Precision=0.79, Recall=0.47, F1=0.59
-        - OvO: Precision=0.69, Recall=0.59, F1=0.64
-        - **Result**: OvO achieves better balanced performance
+        - 
+    * Class D
+        - OvA: Precision=1.0, Recall=0.013, F1=0.025
+        - OvO: Precision=0.53, Recall=0.32, F1=0.40
+        - **Result**: OvO demonstrates significantly better balanced performance
 
 3. __Confusion Matrix Analysis__
     - OvA exhibits strong bias toward class B predictions
