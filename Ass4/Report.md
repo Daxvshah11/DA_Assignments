@@ -1,13 +1,13 @@
 # Team 8 : Assingment 4 (Report)
 
-## Assumptions
+## `Assumptions`
 
 * For Task 1, when training the SVM classifiers, `kernel : rbf` is used because it was noticed that there were better results in case of __rbf__ as compared to __linear__
 
 
 
 
-## Task 1
+## `Task 1`
 
 ### Choosing Tuning Parameters
 
@@ -27,9 +27,69 @@
 
 
 
-## Task 2
+## `Task 2`
 
 
 
 
-## Task 3
+## `Task 3`
+
+### Part A
+
+__Impact__
+- Models bias toward majority classes
+- Minority classes often misclassified
+- Standard metrics become unreliable
+- Small datasets amplify these issues
+
+__Mitigation Strategies__
+
+* Data-Level
+    - SMOTE (careful with small datasets)
+    - Undersampling majority classes
+    - Hybrid approaches (SMOTEENN, SMOTETomek)
+
+* Algorithm-Level
+    - Adjust class weights
+    - Use ensemble methods
+        * Balanced Random Forest
+        * Easy Ensemble
+    - One-vs-Rest with balancing
+
+* Evaluation
+    - Use balanced metrics
+        * Macro F1-score
+        * Per-class precision/recall
+    - Implement stratified cross-validation
+
+__Small Dataset Considerations__
+- Conservative resampling
+- Careful synthetic data validation
+- Stratified k-fold CV
+- Ensure minimum class representation
+
+
+
+### Part B
+
+
+
+
+
+### Part C
+
+__OvO Plots__
+
+![alt text](ovo_confusion_matrix.png) 
+![alt text](ovo_classification_report.png)
+
+
+__OvA Plots__
+
+![alt text](ova_confusion_matrix.png)
+![alt text](ova_classification_report.png) 
+
+
+
+
+### Part D

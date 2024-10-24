@@ -257,23 +257,64 @@ predictions_df = pd.DataFrame(predictions, columns=["predictions"])
 predictions_df.to_csv("ovo.csv", index=False)
 
 
-# Splitting the data into features (X) and labels (y)
+# splitting the data into features (X) and labels (y)
 y = processed_train_data["Segmentation"].values
 new_copy = processed_train_data.copy()
 X = new_copy.drop("Segmentation", axis=1).values
 
-# Splitting into 80% training and 20% validation set (randomly)
+# splitting into 80% training and 20% validation set (randomly)
 new_train_set, new_valid_set, y_train_new, y_valid_new = train_test_split(
     X, y, test_size=0.2, random_state=42
 )
 
-# Create a dictionary to simulate 'train_ova_classifiers' and 'ova_predict' for OvA case
+# create a dictionary to simulate 'train_ova_classifiers' and 'ova_predict' for OvA case
 new_classifiers = train_ovo_classifiers(new_train_set, y_train_new, class_labels)
 
-# Making predictions on the validation set
+# making predictions on the validation set
 predictions = ovo_predict(new_valid_set, classifiers)
 
-# Calculating accuracy
-accuracy = accuracy_score(y_valid_new, predictions)
 
-print("Validation Accuracy:", accuracy)
+# making a confusion matrix for the above split
+def plot_confusion_matrix(cm, classes, title="Confusion matrix", cmap=plt.cm.Blues):
+    plt.imshow(cm, interpolation="nearest", cmap=cmap)
+    plt.title(title)
+    plt.colorbar()
+    tick_marks = np.arange(len(classes))
+    plt.xticks(tick_marks, classes, rotation=45)
+    plt.yticks(tick_marks, classes)
+
+    fmt = "d"
+    thresh = cm.max() / 2.0
+    for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
+        plt.text(
+            j,
+            i,
+            format(cm[i, j], fmt),
+            horizontalalignment="center",
+            color="white" if cm[i, j] > thresh else "black",
+        )
+
+    plt.ylabel("True label")
+    plt.xlabel("Predicted label")
+
+
+# confusion matrix
+cm = confusion_matrix(y_valid_new, predictions)
+plt.figure(figsize=(8, 8))
+plot_confusion_matrix(cm, class_labels, title="Confusion Matrix for OvO")
+plt.savefig("ovo_confusion_matrix.png")
+
+
+# classification report image
+report = classification_report(
+    y_valid_new, predictions, target_names=class_labels, output_dict=True
+)
+df = pd.DataFrame(report).transpose()
+plt.figure(figsize=(12, 6))
+sns.heatmap(df, annot=True, cmap="coolwarm")
+plt.title("Classification Report for OvO")
+plt.savefig("ovo_classification_report.png")
+
+# accuracy score
+accuracy = accuracy_score(y_valid_new, predictions)
+print(f"Accuracy: {accuracy * 100:.2f}%")
