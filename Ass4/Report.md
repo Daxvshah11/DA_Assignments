@@ -73,6 +73,10 @@ __Small Dataset Considerations__
 ### Part B
 
 
+![alt text](random_forest_classification_report.png) 
+![alt text](random_forest_confusion_matrix.png) 
+![alt text](random_forest_hyperparameters_distribution.png)
+
 
 
 
@@ -93,3 +97,43 @@ __OvA Plots__
 
 
 ### Part D
+
+1. __Overall Accuracy__
+    - OvA: 45% accuracy
+    - OvO: 54% accuracy
+    - **Result**: OvO performs better with 9% improvement
+
+2. __Class-wise Performance__
+
+    * Class B
+        - OvA: Precision=0.36, Recall=0.92, F1=0.51
+        - OvO: Precision=0.45, Recall=0.72, F1=0.55
+        - **Result**: OvO shows better balanced metrics
+
+    * Class D
+        - OvA: Precision=1.0, Recall=0.013, F1=0.025
+        - OvO: Precision=0.53, Recall=0.32, F1=0.40
+        - **Result**: OvO demonstrates significantly better balanced performance
+
+    * Class C
+        - OvA: Precision=1.0, Recall=0.034, F1=0.067
+        - OvO: Precision=0.63, Recall=0.38, F1=0.47
+        - **Result**: OvO shows more balanced metrics
+
+    * Class A
+        - OvA: Precision=0.79, Recall=0.47, F1=0.59
+        - OvO: Precision=0.69, Recall=0.59, F1=0.64
+        - **Result**: OvO achieves better balanced performance
+
+3. __Confusion Matrix Analysis__
+    - OvA exhibits strong bias toward class B predictions
+    - OvO shows better distribution of predictions across classes
+    - OvO has fewer extreme misclassifications
+
+4. __Overall Verdict__\
+The OvO model performs better for this dataset due to:
+    - Higher overall accuracy
+    - More balanced precision-recall trade-offs
+    - Better handling of class imbalance
+    - More evenly distributed predictions
+    - Higher F1-scores across all classes
